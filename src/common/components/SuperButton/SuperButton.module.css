@@ -1,0 +1,93 @@
+
+.floatingButtonDefault {
+    outline: none;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    width: 140px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 45px;
+    margin: 10px 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #524f4e;
+    background: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+}
+
+.floatingButtonDefault:hover {
+    background: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
+    color: white;
+    transform: translateY(-7px);
+}
+.floatingButtonDefault:focus {
+    background: rgba(46, 229, 157, .4);
+    box-shadow: 0 15px 20px rgba(24, 119, 81, 0.4);
+
+}
+.floatingButtonDefault:disabled {
+    opacity: 0.6;
+    transform: none;
+    background: rgba(52, 74, 65, 0.4);
+    box-shadow: 0 15px 10px rgba(1, 26, 20, 0.4);
+}
+
+.floatingButtonRed {
+    outline: none;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    width: 140px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 45px;
+    margin: 10px 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #524f4e;
+    background: #e55980;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, .1);
+    transition: .3s;
+}
+
+.floatingButtonRed:hover {
+    background: #c3224f;
+    box-shadow: 0 15px 20px #72132d;
+    color: white;
+    transform: translateY(-7px);
+}
+.floatingButtonRed:focus {
+    background: #724854;
+    box-shadow: 0 15px 20px #851936;
+
+}
+.floatingButtonRed:disabled {
+    background: #9f2a71;
+    opacity: 0.4;
+    transform: none;
+
+}
+.floatingButtonRed:active {
+    transform: translateY(+4px);
+    background-color: #94193c;
+    transition: .3s;
+    box-shadow: 0 10px 12px rgb(121, 14, 44);
+
+}
+.floatingButtonDefault:active {
+    transform: translateY(+4px);
+    background-color: #25b37a;
+    transition: .3s;
+    box-shadow: 0 10px 12px rgba(1, 26, 20, 0.8);
+}
