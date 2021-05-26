@@ -10,7 +10,7 @@ import {TestComponents} from "../../../../features/test-components/TestComponent
 
 
 export const PATH = {
-    PROFILE: '/profile',
+    PROFILE: '/',//PROFILE
     NEW_PASSWORD: '/new_password',
     PASSWORD_RECOVERY: '/password_recovery',
     REGISTRATION: '/registration',
@@ -22,13 +22,13 @@ export const Routes:React.FC=()=>{
     return (
         <div>
             <Switch>
-                <Route path={PATH.PROFILE} render={()=><Profile/>}/>
+                <Route exact path={PATH.PROFILE} render={()=><Profile/>}/>
                 <Route path={PATH.NEW_PASSWORD} render={()=><NewPassword/>}/>
                 <Route path={PATH.PASSWORD_RECOVERY} render={()=><PasswordRecovery/>}/>
                 <Route path={PATH.REGISTRATION} render={()=><Registration/>}/>
-                <Route path={PATH.ERROR_404} render={()=><Error_404/>}/>
                 <Route path={PATH.AUTHORIZATION} render={()=><Authorization/>}/>
                 <Route path={PATH.TEST} render={()=><TestComponents/>}/>
+                <Route render={()=><Error_404/>}/>
             </Switch>
         </div>
     )
