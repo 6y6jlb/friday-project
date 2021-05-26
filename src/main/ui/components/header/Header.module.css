@@ -1,0 +1,8 @@
+.headerFrame {
+    justify-self: center;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fill,100px);
+    column-gap: 10px;
+}
