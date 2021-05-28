@@ -14,6 +14,7 @@ export const TestComponents: React.FC = (props) => {
             <SuperInputText value={'error'} error={'error'}/>
             <SuperCheckbox checked/>
             <SuperCheckbox checked={false}/>
+            <SuperCheckbox checked={false}/>
 
         </div>)
 }
