@@ -1,5 +1,5 @@
 import React from "react";
 
 export const Profile:React.FC= (props)=>{
-    return <h1>тест 8 </h1>
+    return <h1>тест 9 </h1>
 }
