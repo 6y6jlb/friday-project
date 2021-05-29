@@ -1,7 +1,7 @@
 import {InferActionsType} from "./store";
 
 //actions
-export const actionsProfile = {}
+export const actionsAuthorization = {}
 //reducer
 const authReducer = (state = {}, action: AuthActionsTypes): InitialStateProfileType => {
     switch (action.type) {
@@ -11,5 +11,5 @@ const authReducer = (state = {}, action: AuthActionsTypes): InitialStateProfileT
 }
 export default authReducer;
 //types
-export type AuthActionsTypes = InferActionsType<typeof actionsProfile>;
+export type AuthActionsTypes = InferActionsType<typeof actionsAuthorization>;
 export type InitialStateProfileType = any;

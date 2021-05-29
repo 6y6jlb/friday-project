@@ -1,0 +1,22 @@
+.authContainer {
+    width: 413px;
+    height: 600px;
+    margin: 50px auto;
+    background: #F9F9FE;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+.forgotPasFrame {
+    font-size: 0.8em;
+    align-self: flex-end;
+
+}
+.signUpFrame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
