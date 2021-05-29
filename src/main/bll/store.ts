@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import profileReducer, { ProfileActionsTypes } from "./profile-reducer";
-import { AuthActionsTypes } from "./authorization-reducer";
+import authReducer, { AuthActionsTypes } from "./authorization-reducer";
 import { RecoveryPasswordActionsTypes } from "./recovery-password-reducer";
 import { NewPasswordActionsTypes } from "./new-password-reducer";
 import { registrationReducer } from "./registration-reducer";
@@ -15,6 +15,7 @@ export type ActionsTypes =
 const rootReducer = combineReducers({
   profile: profileReducer,
   registration: registrationReducer,
+  auth:authReducer,
 });
 
 //common state type

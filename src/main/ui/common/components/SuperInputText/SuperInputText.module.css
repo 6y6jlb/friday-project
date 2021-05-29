@@ -9,6 +9,7 @@
 }
 
 .errorInput {
+    color: #f3d7df;
     border: 3px solid #72132d;
     background: #c3224f;
     box-shadow: 0 6px 10px #b51c46;

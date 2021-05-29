@@ -9,14 +9,26 @@
     justify-content: space-between;
     padding: 0 10px;
 }
+.inputsFrame {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+   align-items: center;
+}
 .forgotPasFrame {
     font-size: 0.8em;
     align-self: flex-end;
-
 }
+.forgotPasFrame a{
+    color: inherit;
+    text-decoration: none;}
 .signUpFrame {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.signUpFrame a{
+    color: inherit;
+    text-decoration: none;
 }

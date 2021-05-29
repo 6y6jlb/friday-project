@@ -55,7 +55,7 @@
     text-align: center;
     letter-spacing: 3px;
     font-weight: 600;
-    color: #524f4e;
+    color: #f3d7df;
     background: #e55980;
     box-shadow: 0 8px 10px rgba(0, 0, 0, .1);
     transition: .3s;
@@ -64,7 +64,7 @@
 .floatingButtonRed:hover {
     background: #c3224f;
     box-shadow: 0 15px 20px #72132d;
-    color: white;
+    color: #f3d7df;
     transform: translateY(-7px);
 }
 .floatingButtonRed:focus {
@@ -73,12 +73,14 @@
 
 }
 .floatingButtonRed:disabled {
+    color: #d7bfc6;
     background: #9f2a71;
     opacity: 0.4;
     transform: none;
 
 }
 .floatingButtonRed:active {
+    color: white;
     transform: translateY(+4px);
     background-color: #94193c;
     transition: .3s;
