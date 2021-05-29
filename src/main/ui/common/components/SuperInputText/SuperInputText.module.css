@@ -15,6 +15,7 @@
 }
 
 .error {
+    padding: 8px;
     color: #8f1333;
     text-transform: uppercase;
 

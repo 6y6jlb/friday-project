@@ -1,15 +1,43 @@
-import {InferActionsType} from "./store";
+import { Dispatch } from "redux";
+import { InferActionsType } from "./store";
+
+const REGISTERED = "REGISTERED";
 
 //actions
-export const actionsProfile = {}
+export const actionsProfile = {
+  registered: false,
+};
 //reducer
-const registrationReducer = (state = {}, action: RegistrationActionsTypes): InitialStateProfileType => {
-    switch (action.type) {
-        default:
-            return state
+export const registrationReducer = (
+  state = {},
+  action: RegistrationActionsTypes
+): InitialStateProfileType => {
+  switch (action.type) {
+    case REGISTERED: {
+      return { ...state, registered: action.registered };
     }
-}
-export default registrationReducer;
+    default:
+      return state;
+  }
+};
+//actions
+export const registerUserAC = (registered: boolean) => ({
+  type: REGISTERED,
+  registered,
+});
+
+//thunks
+export const registerUserTC = (data: RegisterData) => (dispatch: Dispatch) => {
+  //   AUTH.register().register(data).then(() => {
+  //     dispatch(registerUserAC(true));
+  //   });
+};
+
 //types
-export type RegistrationActionsTypes = InferActionsType<typeof actionsProfile>;
+// export type RegistrationActionsTypes = InferActionsType<typeof actionsProfile>;
+export type RegisterData = {
+  email: string;
+  password: string;
+};
+export type RegistrationActionsTypes = any;
 export type InitialStateProfileType = any;
