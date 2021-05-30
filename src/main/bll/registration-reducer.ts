@@ -3,10 +3,12 @@ import {InferActionsType} from "./store";
 import {authApi} from "../dal/authAPI";
 
 const REGISTERED = "REGISTERED";
+const ERROR_FROM_REQUEST = "ERROR_FROM_REQUEST";
 
 //actions
 export const actionsProfile = {
     registered: false,
+    error: false
 };
 //reducer
 export const registrationReducer = (
@@ -17,6 +19,9 @@ export const registrationReducer = (
         case REGISTERED: {
             return {...state, registered: action.registered};
         }
+        case ERROR_FROM_REQUEST: {
+            return {...state, error: action.errorFromRequest};
+        }
         default:
             return state;
     }
@@ -26,11 +31,23 @@ export const registerUserAC = (registered: boolean) => ({
     type: REGISTERED,
     registered,
 });
+export const errorFromRequestAC = (error: string) => ({
+    type: ERROR_FROM_REQUEST,
+    error: error,
+});
 
 //thunks
 export const registerUserTC = (data: RegisterDataType) => (dispatch: Dispatch) => {
     authApi.register(data).then(() => {
-        dispatch(registerUserAC(true));
+        try {
+            dispatch(registerUserAC(true));
+        } catch (e) {
+            const error = e.response
+                ? e.response.data.error
+                : (e.message + ', more details in the console');
+            dispatch(errorFromRequestAC(error))
+        }
+
     });
 };
 
