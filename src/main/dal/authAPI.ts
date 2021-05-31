@@ -23,5 +23,8 @@ export const authApi = {
     },
     logOut: () => {
         return instance.delete('auth/me/', {})
+    },
+    forgot: (email: string) => {
+        return instance.post('auth/forgot', {email} )
     }
 }
