@@ -12,6 +12,8 @@ export const Registration: React.FC = (props) => {
     const [password, setPassword] = useState<string>("");
     const [passwordConfirm, setPasswordConfirm] = useState<string>("");
     const [error, setError] = useState<string>("");
+    const errorFromServer = useSelector<AppStateType, string>(state => state.registration.error)
+
 
     const registered = useSelector<AppStateType, boolean>(
         (state) => state.registration.registered
@@ -55,7 +57,7 @@ export const Registration: React.FC = (props) => {
                 Password:
                 <SuperInputText
                     type={"password"}
-                    error={error}
+                    error={errorFromServer || error}
                     value={password}
                     onChangeText={onChangePassword}
                 />
@@ -64,7 +66,7 @@ export const Registration: React.FC = (props) => {
                 Confirm Password:
                 <SuperInputText
                     type={"password"}
-                    error={error}
+                    error={errorFromServer || error}
                     value={passwordConfirm}
                     onChangeText={onChangePasswordConfirm}
                 />
