@@ -5,7 +5,7 @@ import {NewPassword} from "../new-password/NewPassword";
 import {PasswordRecovery} from "../password-recovery/PasswordRecovery";
 import {Registration} from "../registration/Registration";
 import {Error_404} from "../error-pages/404-error/Error_404";
-import {Authorization} from "../authorization/Authorization";
+import {AuthorizationContainer} from "../authorization/AuthorizationContainer";
 import {TestComponents} from "../../../../features/test-components/TestComponents";
 
 
@@ -26,7 +26,7 @@ export const Routes:React.FC=()=>{
                 <Route path={PATH.NEW_PASSWORD} render={()=><NewPassword/>}/>
                 <Route path={PATH.PASSWORD_RECOVERY} render={()=><PasswordRecovery/>}/>
                 <Route path={PATH.REGISTRATION} render={()=><Registration/>}/>
-                <Route path={PATH.AUTHORIZATION} render={()=><Authorization/>}/>
+                <Route path={PATH.AUTHORIZATION} render={()=><AuthorizationContainer/>}/>
                 <Route path={PATH.TEST} render={()=><TestComponents/>}/>
                 <Route render={()=><Error_404/>}/>
             </Switch>
