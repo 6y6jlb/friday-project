@@ -14,7 +14,6 @@ export const AuthorizationContainer: React.FC = React.memo((props) => {
     const error = useSelector<AppStateType, string | undefined> ( state => state.auth.error )
 
     const login = () => {
-        //dispatch(loginTC('nya-admin@nya.nya','1qazxcvBG')) //ignat login
         dispatch ( loginTC ( email, password ) )
     }
     const changePasswordInput = (e: ChangeEvent<HTMLInputElement>) => {

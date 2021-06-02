@@ -2,7 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import profileReducer, { ProfileActionsTypes } from "./profile-reducer";
 import authReducer, { AuthActionsTypes } from "./authorization-reducer";
-import { RecoveryPasswordActionsTypes } from "./recovery-password-reducer";
+import recoveryPasswordReducer, {RecoveryPasswordActionsTypes, recoveryPasswordTC} from "./recovery-password-reducer";
 import { NewPasswordActionsTypes } from "./new-password-reducer";
 import { registrationReducer } from "./registration-reducer";
 
@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   registration: registrationReducer,
   auth:authReducer,
+  recoveryPassword:recoveryPasswordReducer
 });
 
 //common state type
