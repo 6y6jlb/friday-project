@@ -2,7 +2,7 @@ import {instance} from "./instatnce";
 import {ProfileResponseType} from "../bll/profile-reducer";
 import {RegisterDataType} from "../bll/registration-reducer";
 
-export const authApi = {
+export const API = {
     pingGet: () => {
         return instance.get('ping/')
     },

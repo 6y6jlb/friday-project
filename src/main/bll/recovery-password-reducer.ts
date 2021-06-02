@@ -1,5 +1,5 @@
 import { AppThunk, InferActionsType } from "./store";
-import { authApi } from "../dal/authAPI";
+import { API } from "../dal/API";
 import { actionsAuthorization } from "./authorization-reducer";
 
 const initialState = {
@@ -31,7 +31,7 @@ export default recoveryPasswordReducer;
 export const recoveryPasswordTC = ( email : string ) : AppThunk => async dispatch => {
 	dispatch ( actionsPasswordRecovery.setAnswer ( '') )
 	try {
-		const response = await authApi.forgot ( email )
+		const response = await API.forgot ( email )
 		if (response.data.success) {
 			dispatch ( actionsPasswordRecovery.setAnswer ( 'проверь почту, будь молодцом') )
 		}

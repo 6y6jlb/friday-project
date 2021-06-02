@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {InferActionsType} from "./store";
-import {authApi} from "../dal/authAPI";
+import {API} from "../dal/API";
 
 const REGISTERED = "REGISTERED";
 const ERROR_FROM_REQUEST = "ERROR_FROM_REQUEST";
@@ -38,7 +38,7 @@ export const errorFromRequestAC = (error: string) => ({
 
 //thunks
 export const registerUserTC = (data: RegisterDataType) => (dispatch: Dispatch) => {
-    authApi.register(data).then(() => {
+    API.register(data).then(() => {
         try {
             dispatch(registerUserAC(true));
         } catch (e) {
