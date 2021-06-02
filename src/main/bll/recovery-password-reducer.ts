@@ -29,14 +29,18 @@ export default recoveryPasswordReducer;
 
 //thunk
 export const recoveryPasswordTC = ( email : string ) : AppThunk => async dispatch => {
+	dispatch ( actionsPasswordRecovery.setAnswer ( '') )
 	try {
 		const response = await authApi.forgot ( email )
-		dispatch ( actionsPasswordRecovery.setAnswer(response.data.toString()) )
+		if (response.data.success) {
+			dispatch ( actionsPasswordRecovery.setAnswer ( 'проверь почту, будь молодцом') )
+		}
 	} catch (e) {
 		const error = e.response
 			? e.response.data.error
 			: (e.message + ', more details in the console');
-		dispatch ( actionsAuthorization.setError ( error ) )
+		dispatch ( actionsPasswordRecovery.setAnswer ( 'попробуй еще раз') )
+
 	}
 }
 
