@@ -13,6 +13,7 @@ export const Header: React.FC = (props) => {
             <NavLink to={PATH.ERROR_404}>error</NavLink>
             <NavLink to={PATH.NEW_PASSWORD}>pass new</NavLink>
             <NavLink to={PATH.PASSWORD_RECOVERY}>pass recovery</NavLink>
+            <NavLink to={PATH.TABLE}>table</NavLink>
 
         </div>)
 }
