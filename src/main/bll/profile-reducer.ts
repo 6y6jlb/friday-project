@@ -2,7 +2,7 @@ import {InferActionsType} from "./store";
 
 //actions
 export const actionsProfile = {
-    setProfile:(model:ProfileResponseType)=>{
+    setProfile:(model:ProfileResponseType | {})=>{
         return {
             type:'friday/profile/setProfile',
             payload:{model}

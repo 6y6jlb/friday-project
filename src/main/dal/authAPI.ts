@@ -2,7 +2,7 @@ import {instance} from "./instatnce";
 import {ProfileResponseType} from "../bll/profile-reducer";
 import {RegisterDataType} from "../bll/registration-reducer";
 
-export const API = {
+export const AuthAPI = {
     pingGet: () => {
         return instance.get('ping/')
     },
@@ -10,10 +10,9 @@ export const API = {
         return instance.post('ping/', {frontTime: Date.now()})
     },
     me: () => {
-        return instance.post('auth/me', {})
+        return instance.post<ProfileResponseType>('auth/me', {})
     },
     register: (data: RegisterDataType) => {
-        debugger
         return instance.post('auth/register', data)
     },
     login: (email: string, password: string, rememberMe: boolean) => {
@@ -26,6 +25,9 @@ export const API = {
         return instance.delete('auth/me/', {})
     },
     forgot: (email: string) => {
-        return instance.post('auth/forgot', {email} )
-    }
+        return instance.post('auth/forgot', {email,message:'test'} )
+    },
+    delete:() => {
+        return instance.delete('auth/forgot', {} )
+    },
 }
