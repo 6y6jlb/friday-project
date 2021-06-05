@@ -1,5 +1,5 @@
 import {AppThunk, InferActionsType} from "./store";
-import {authApi} from "../dal/authAPI";
+import {API} from "../dal/API";
 import {actionsProfile} from "./profile-reducer";
 
 //state
@@ -28,7 +28,7 @@ export const actionsAuthorization = {
 //thunk
 export const loginTC = (email: string, password: string, rememberMe = false):AppThunk=>async dispatch=>{
    try {
-       const response = await authApi.login(email,password,rememberMe)
+       const response = await API.login(email,password,rememberMe)
        dispatch(actionsProfile.setProfile(response.data))
        dispatch(actionsAuthorization.setAuth(true))
    } catch (e) {
