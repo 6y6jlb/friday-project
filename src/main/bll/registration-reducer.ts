@@ -17,6 +17,8 @@ export const registrationReducer = (
 ): InitialStateProfileType => {
     switch (action.type) {
         case REGISTERED: {
+            debugger
+
             return {...state, registered: action.registered};
         }
         case ERROR_FROM_REQUEST: {
