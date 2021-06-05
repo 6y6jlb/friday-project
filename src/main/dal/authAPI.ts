@@ -13,7 +13,6 @@ export const authApi = {
         return instance.post('auth/me', {})
     },
     register: (data: RegisterDataType) => {
-        debugger
         return instance.post('auth/register', data)
     },
     login: (email: string, password: string, rememberMe: boolean) => {
