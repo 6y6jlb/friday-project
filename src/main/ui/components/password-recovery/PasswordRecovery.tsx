@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, {ChangeEvent, useState} from "react";
 import style from "./PasswordRecovery.module.css";
 import SuperInputText from "../../common/components/SuperInputText/SuperInputText";
 import SuperButton from "../../common/components/SuperButton/SuperButton";
-import { recoveryPasswordTC } from "../../../bll/recovery-password-reducer";
+import {recoveryPasswordTC} from "../../../bll/recovery-password-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../bll/store";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {PATH} from "../routes/Routes";
 
 export const PasswordRecovery = () => {
@@ -13,7 +13,7 @@ export const PasswordRecovery = () => {
 	const [email, setEmail] = useState<string> ( '' );
 	const answer = useSelector<AppStateType,string>(state=>state.recoveryPassword.answer)
 	const error = useSelector<AppStateType,string|undefined>(state=>state.auth.error)
-	const changeInput = ( e : any ) => {
+	const changeInput = ( e : ChangeEvent<HTMLInputElement> ) => {
 		setEmail ( e.currentTarget.value )
 	}
 	return (

@@ -8,6 +8,7 @@ import {Error_404} from "../error-pages/404-error/Error_404";
 import {AuthorizationContainer} from "../authorization/AuthorizationContainer";
 import {TestComponents} from "../../../../features/test-components/TestComponents";
 import FindAndPagination from "../findAndPagination/FindAndPagination";
+import Table from "../../../../features/table/Table";
 
 
 export const PATH = {
@@ -18,7 +19,9 @@ export const PATH = {
     AUTHORIZATION: '/authorization',
     ERROR_404: '/error/404',
     TEST: '/test',
-    SEARCH_TEST:"/search"
+    SEARCH_TEST:"/search",
+    TABLE:'/table'
+
 }
 export const Routes:React.FC=()=>{
     return (
@@ -31,6 +34,7 @@ export const Routes:React.FC=()=>{
                 <Route path={PATH.AUTHORIZATION} render={()=><AuthorizationContainer/>}/>
                 <Route path={PATH.TEST} render={()=><TestComponents/>}/>
                 <Route path={PATH.SEARCH_TEST} render={()=><FindAndPagination/>}/>
+                <Route path={PATH.TABLE} render={()=><Table/>}/>
                 <Route render={()=><Error_404/>}/>
             </Switch>
         </div>
