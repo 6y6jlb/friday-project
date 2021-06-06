@@ -25,7 +25,7 @@ export const Profile: React.FC = (props) => {
 
     return (
         <div className={ style.profileContainer }>
-            <SuperButton value={ 'logout' } onClick={ logout }/>
+            <SuperButton value={ 'logout' } onClick={ logout }>logOut</SuperButton>
             <img className={ style.image } src={ profile.avatar || "http://placehold.it/300x300" }/>
             <h1>{ profile.name || profile.email || 'челавечка' }</h1>
 

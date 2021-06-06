@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import profileReducer, { ProfileActionsTypes } from "./profile-reducer";
-import { authReducer, AuthActionsTypes } from "./authorization-reducer";
+import authReducer, {  AuthActionsTypes } from "./authorization-reducer";
 import recoveryPasswordReducer, {
   RecoveryPasswordActionsTypes,
   recoveryPasswordTC,
