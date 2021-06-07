@@ -1,19 +1,25 @@
 import React from "react";
 import style from './Table.module.css';
-import SuperButton from "../../main/ui/common/components/SuperButton/SuperButton";
-import FindAndPagination from "../../main/ui/components/findAndPagination/FindAndPagination";
+import {Search} from "../../main/ui/components/findAndPagination/Search";
+import {FilterPrice} from "../../main/ui/components/findAndPagination/FilterPrice";
+import {Pagination} from "../../main/ui/components/findAndPagination/Pagination";
+import Packs from "./Packs/Packs";
+import {useSelector} from "react-redux";
+import {AppStateType} from "../../main/bll/store";
+import {PackResponseType} from "../../main/dal/tableAPI";
 
 const Table: React.FC = () => {
+    const packs = useSelector<AppStateType ,Array<PackResponseType>>(state=>state.table.packs)
+    console.log (packs)
+
+
     return (
         <div className={ style.tableContainer }>
-            <header>
-                <h1>cards list</h1>
-                <input type="text"/>
-                <SuperButton value={ 'search' }>search</SuperButton>
-            </header>
-            <div className={ style.cardsContainer }>
-                <FindAndPagination/>
-            </div>
+            <h1>cards list</h1>
+            <Search/>
+            <FilterPrice/>
+            <Packs packs={packs}/>
+            <Pagination/>
 
         </div>
     )

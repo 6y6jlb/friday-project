@@ -1,17 +1,16 @@
 import React from "react";
+import style from './FilterPrice.module.css'
 
 export function FilterPrice() {
   return (
-    <div>
+    <div className={style.filterContainer}>
       <span>Sort by price:</span>
-      <span>
         <div>
           <button>/\</button>
         </div>
         <div>
           <button>\/</button>
         </div>
-      </span>
     </div>
   );
 }
