@@ -42,7 +42,7 @@ export const loginTC = (email: string, password: string, rememberMe = false): Ap
 export const logOutTC = (): AppThunk => async dispatch => {
     try {
         const response = AuthAPI.logOut ()
-        dispatch ( actionsProfile.setProfile ( {} ) )
+        dispatch ( actionsProfile.setProfile (null) )
         dispatch ( actionsAuthorization.setAuth ( false ) )
     } catch (e) {
         const error = e.response
@@ -54,8 +54,10 @@ export const logOutTC = (): AppThunk => async dispatch => {
 export const  meTC = (): AppThunk => async dispatch => {
     try {
         const response = await AuthAPI.me ()
+
         if (response.data) {
             dispatch ( actionsAuthorization.setAuth (true) )
+            dispatch ( actionsProfile.setProfile ( response.data ) )
         }
     } catch (e) {
         const error = e.response

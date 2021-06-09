@@ -1,5 +1,4 @@
 import {Dispatch} from "redux";
-import {InferActionsType} from "./store";
 import {AuthAPI} from "../dal/authAPI";
 
 const REGISTERED = "REGISTERED";

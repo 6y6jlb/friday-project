@@ -1,56 +1,69 @@
-import {InferActionsType} from "./store";
+import {AppStateType, AppThunk, InferActionsType} from "./store";
+import {ThunkAction} from "redux-thunk";
+import {AuthAPI} from "../dal/authAPI";
+import {meTC} from "./authorization-reducer";
 
 //actions
 export const actionsProfile = {
-    setProfile:(model:ProfileResponseType | {})=>{
-        return {
-            type:'friday/profile/setProfile',
-            payload:{model}
-        }
-    }
+    setProfile:(model:ProfileResponseType) => {
+        return {type:'friday/profile/setProfile', payload:{model}
+        } as const
+    },
 
 }
 
+//Thunk
+export const updateName = (name: string | null): AppThunk => async (dispatch) => {
+    try {
+        await AuthAPI.updateName(name)
+        dispatch(meTC())
+    } catch (e) {
+        const error = e.response
+            ? e.response.data.error
+            : (e.message + ', more details in the console');
+    }
+}
+export const updateAvatar = (avatar: string): AppThunk => async (dispatch) => {
+    try {
+        await AuthAPI.updateAvatar( avatar)
+        dispatch(meTC())
+    } catch (e) {
+        const error = e.response
+            ? e.response.data.error
+            : (e.message + ', more details in the console');
+    }
+}
 //state
 
 const initialStateProfile = {
-    profileEntity: {
-        _id: null,
-        email: null,
-        name: null,
-        avatar: null,
-        publicCardPacksCount: null, // количество колод
-        created: null,
-        updated: null,
-        isAdmin: null,
-        verified: null,// подтвердил ли почту
-        rememberMe: null,
-        error: null,
-    } as ProfileResponseType
+    profileEntity: null as ProfileResponseType | null ,
 }
+
 //reducer
-const profileReducer = (state = initialStateProfile, action: ProfileActionsTypes): InitialStateProfileType => {
+const profileReducer = (state:InitialStateProfileType = initialStateProfile, action: ProfileActionsTypes): InitialStateProfileType => {
     switch (action.type) {
         case "friday/profile/setProfile":
-            return {...state,...action.payload.model}
+            return {...state,  profileEntity: action.payload.model}
+
         default:
             return state
     }
 }
 export default profileReducer;
+
 //types
-export type ProfileActionsTypes = InferActionsType<typeof actionsProfile>;
+export type ProfileActionsTypes = InferActionsType<typeof actionsProfile>
 export type InitialStateProfileType = typeof initialStateProfile;
-export type ProfileResponseType = {
-    _id: string | null
-    email: string | null
-    name: string | null
-    avatar?: string | null
-    publicCardPacksCount: number | null // количество колод
-    created: Date | null
-    updated: Date | null
-    isAdmin: boolean | null
-    verified: boolean | null;// подтвердил ли почту
-    rememberMe: boolean | null
-    error?: string | null
+export type ProfileResponseType = null | {
+        _id: string
+        email: string
+        name: string
+        avatar?: string
+        publicCardPacksCount: number
+        created: Date
+        updated: Date
+        isAdmin: boolean
+        verified: boolean
+        rememberMe: boolean
+        error?: string
 }

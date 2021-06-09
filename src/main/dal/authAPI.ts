@@ -24,6 +24,12 @@ export const AuthAPI = {
     logOut: () => {
         return instance.delete('auth/me/', {})
     },
+    updateAvatar(avatar: string) {
+        return  instance.put('auth/me', { avatar})
+    },
+    updateName(name: string | null) {
+        return  instance.put('auth/me', {name})
+    },
     forgot: (email: string) => {
         return instance.post('auth/forgot', {email,message:'test'} )
     },
