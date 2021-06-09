@@ -1,5 +1,4 @@
-import {AppStateType, AppThunk, InferActionsType} from "./store";
-import {ThunkAction} from "redux-thunk";
+import {AppThunk, InferActionsType} from "./store";
 import {AuthAPI} from "../dal/authAPI";
 import {meTC} from "./authorization-reducer";
 
@@ -37,6 +36,7 @@ export const updateAvatar = (avatar: string): AppThunk => async (dispatch) => {
 
 const initialStateProfile = {
     profileEntity: null as ProfileResponseType | null ,
+
 }
 
 //reducer
@@ -44,7 +44,6 @@ const profileReducer = (state:InitialStateProfileType = initialStateProfile, act
     switch (action.type) {
         case "friday/profile/setProfile":
             return {...state,  profileEntity: action.payload.model}
-
         default:
             return state
     }

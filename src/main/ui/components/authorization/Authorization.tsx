@@ -4,6 +4,7 @@ import SuperInputText from "../../common/components/SuperInputText/SuperInputTex
 import SuperButton from "../../common/components/SuperButton/SuperButton";
 import {NavLink} from "react-router-dom";
 import {PATH} from "../routes/Routes";
+import {Preloader} from "../../common/components/Preloader/Preloader";
 
 type AuthPropsTypes = {
     onBlurCallback: (value: string) => void
@@ -13,17 +14,26 @@ type AuthPropsTypes = {
     password: string
     email: string
     error: string | undefined
+    loading: boolean
 }
 export const Authorization: React.FC<AuthPropsTypes> = React.memo((props) => {
     const {
         onBlurCallback, changeEmailInput, changePasswordInput, login, password, email, error
     } = props //деструктуризация
+
+    if(props.loading) {
+
+        return <div style={{margin:'80px 0 0 40px'}}><Preloader/></div>
+    }
+
     return (
-        <div className={ style.authContainer }>
+
+                <div className={ style.authContainer }>
             <div className={ style.titleFrame }><h1>it-incubator</h1>
                 <h2>sign in</h2></div>
             <div className={ style.inputsFrame }>
                 <div>
+                    <p>test data</p>
                     <p>rend@re.re</p>
                     <p>12345678</p>
                 </div>

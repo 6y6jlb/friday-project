@@ -11,8 +11,8 @@ export const AuthorizationContainer: React.FC = React.memo((props) => {
     const [password, setPassword] = useState ( '' )
     const dispatch = useDispatch ()
     const isAuth = useSelector<AppStateType, boolean> ( state => state.auth.isAuth )
+    const loading = useSelector<AppStateType, boolean> ( state => state.auth.loading )
     const error = useSelector<AppStateType, string | undefined> ( state => state.auth.error )
-
     const login = () => {
         dispatch ( loginTC ( email, password ) )
     }
@@ -32,7 +32,7 @@ export const AuthorizationContainer: React.FC = React.memo((props) => {
 
     if (isAuth) return <Redirect to={ PATH.PROFILE }/>
 
-    return <Authorization password={ password } error={ error } login={ login }
+    return <Authorization password={ password } error={ error } login={ login } loading={loading}
                           changePasswordInput={ changePasswordInput } changeEmailInput={ changeEmailInput }
                           email={ email } onBlurCallback={ onBlurCallback }/>
 })

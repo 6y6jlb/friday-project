@@ -5,8 +5,8 @@ import {actionsProfile} from "./profile-reducer";
 //state
 const initialProfileState = {
     isAuth: false,
-    error: undefined as string | undefined
-
+    error: undefined as string | undefined,
+    loading:false,
 }
 
 
@@ -23,14 +23,21 @@ export const actionsAuthorization = {
             type: 'friday/auth/setErrorAC',
             payload: {error}
         } as const
-    }
+    },
+    setLoading:(loading: boolean) => {
+
+        return {type: "friday/auth/SET-PROFILE-LOADING", payload:{loading}
+        } as const
+    },
 }
 //thunk
 export const loginTC = (email: string, password: string, rememberMe = false): AppThunk => async dispatch => {
     try {
+        dispatch ( actionsAuthorization.setLoading(true))
         const response = await AuthAPI.login ( email, password, rememberMe )
         dispatch ( actionsProfile.setProfile ( response.data ) )
         dispatch ( actionsAuthorization.setAuth ( true ) )
+        dispatch ( actionsAuthorization.setLoading(false))
     } catch (e) {
         const error = e.response
             ? e.response.data.error
@@ -72,8 +79,12 @@ export const  meTC = (): AppThunk => async dispatch => {
 const authReducer = (state = initialProfileState, action: AuthActionsTypes): InitialStateProfileType => {
     switch (action.type) {
         case "friday/auth/setAuthAC": //сетаем исАус
+            return {...state, isAuth: action.payload.isAuth}
         case "friday/auth/setErrorAC": //сетаем еррор
-            return {...state, ...action.payload}
+            return {...state, error: action.payload.error}
+        case "friday/auth/SET-PROFILE-LOADING":
+            return {...state,  loading: action.payload.loading}
+
         default:
             return state
     }
