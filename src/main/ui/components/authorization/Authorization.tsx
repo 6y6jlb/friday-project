@@ -4,7 +4,8 @@ import SuperInputText from "../../common/components/SuperInputText/SuperInputTex
 import SuperButton from "../../common/components/SuperButton/SuperButton";
 import {NavLink} from "react-router-dom";
 import {PATH} from "../routes/Routes";
-//import {Preloader} from "../../common/components/Preloader/Preloader";
+import {Preloader} from "../../common/components/Preloader/Preloader";
+
 
 type AuthPropsTypes = {
     onBlurCallback: (value: string) => void
@@ -22,9 +23,7 @@ export const Authorization: React.FC<AuthPropsTypes> = React.memo((props) => {
     } = props //деструктуризация
 
     if(props.loading) {
-
-        //return <div style={{margin:'80px 0 0 40px'}}><Preloader/></div>
-        return <div style={{margin:'80px 0 0 40px'}}>loading</div>
+        return <div style={{margin:'80px 0 0 40px'}}><Preloader/></div>
     }
 
     return (
