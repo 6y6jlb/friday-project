@@ -1,4 +1,5 @@
 import {instance} from "./instatnce";
+import {PackType} from "../bll/table-reducer";
 
 
 export const TableAPI = {
@@ -13,6 +14,9 @@ export const TableAPI = {
                 pageCount
             }
         } )
+    },
+    setNewPack: (pack:PackType)=>{
+        return instance.post('cards/pack',{cardsPack: pack})
     }
 }
 

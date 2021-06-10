@@ -1,7 +1,11 @@
 .tableContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     row-gap:20px;
+    width: 1280px;
+    height: 100vh;
+    background: #F9F9FE;
+    margin: 50px auto;
 }

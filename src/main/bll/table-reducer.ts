@@ -1,8 +1,10 @@
-import {InferActionsType} from "./store";
-import {PackResponseType} from "../dal/tableAPI";
+import {AppThunk, InferActionsType} from "./store";
+import {PackResponseType, TableAPI} from "../dal/tableAPI";
+import {actionsFindAndPagination, getPacksTC} from "./find-and-pagination-reducer";
 
 //state
 const initialProfileState = {
+    newPackItem: {name: '', price: null as number | null},
     packs: [
         {
             _id: "60be45b847a0990004f87488",
@@ -50,9 +52,31 @@ export const actionsTable = {
             type: 'friday/table/setPacks',
             payload: {packs}
         }
+    },
+    addPack: (pack: PackType) => {
+        return {
+            type: 'friday/table/addPack',
+            payload: {pack}
+        } as const
     }
 
 
+}
+
+export const addPackTC = (name = 'no Name', price?: number): AppThunk => async (dispatch, getState) => {
+
+    const pack: PackType = {name, price}
+    dispatch ( actionsFindAndPagination.setSearchValueAC ( name ) )
+    try {
+        const response = await TableAPI.setNewPack ( pack )
+        dispatch ( getPacksTC () )
+    } catch (e) {
+        const error = e.response
+            ? e.response.data.error
+            : (e.message + ', more details in the console');
+        console.log ( error )
+
+    }
 }
 
 //reducer
@@ -61,6 +85,10 @@ const tableReducer = (state = initialProfileState, action: TableActionsTypes): I
         case "friday/table/setPacks": {
             return {...state, packs: [...action.payload.packs]}
         }
+        /*case "friday/table/addPack": {
+            return {...state}
+
+        }*/
         default:
             return state
     }
@@ -69,3 +97,15 @@ export default tableReducer;
 //types
 export type TableActionsTypes = InferActionsType<typeof actionsTable>;
 export type InitialStateTableType = typeof initialProfileState;
+
+export type PackType = {
+    name?: string // если не отправить будет таким
+    path?: string // если не отправить будет такой
+    grade?: number // не обязателен
+    shots?: number // не обязателен
+    rating?: number // не обязателен
+    price?: number
+    deckCover?: string // не обязателен
+    private?: boolean // если не отправить будет такой
+    type?: "pack" // если не отправить будет таким
+}

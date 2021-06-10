@@ -6,11 +6,11 @@ import style from './Profile.module.css';
 import {Redirect} from "react-router-dom";
 import {PATH} from "../routes/Routes";
 import SuperButton from "../../common/components/SuperButton/SuperButton";
-import {logOutTC} from "../../../bll/authorization-reducer";
-import {getPacksTC} from "../../../bll/find-and-pagination-reducer";
+import {logOutTC, meTC} from "../../../bll/authorization-reducer";
 import SuperInputText from "../../common/components/SuperInputText/SuperInputText";
 
 export const Profile: React.FC = (props) => {
+
     const dispatch = useDispatch ()
     const profile = useSelector<AppStateType, ProfileResponseType > ( state => state.profile.profileEntity )
     const isAuth = useSelector<AppStateType, boolean> ( state => state.auth.isAuth )
@@ -18,11 +18,11 @@ export const Profile: React.FC = (props) => {
     const [change, setChange] = useState(false)
     const [changeAva, setChangeAva] = useState(false)
     const [avatar, setNewAva] = useState<string>(profile &&  profile.avatar || "http://placehold.it/300x300" )
-    const [name, setName] = useState(profile && profile.name || profile &&  profile.email || 'init')
+    const [name, setName] = useState((profile && profile.name) || (profile &&  profile.email) || 'init')
 
 
     useEffect ( () => {
-        dispatch ( getPacksTC () )
+        dispatch ( meTC () )
     }, [] )
     useEffect(() => {
         document.title='Profile'
@@ -35,8 +35,8 @@ export const Profile: React.FC = (props) => {
         3:'http://www.granadoespada.com/uploads/character/04f253933ccde4810846c692bbf897ec.jpg',
     }
 
-        //@ts-ignore
-    const changeAvatar = (e:MouseEvent<HTMLSpanElement>) => {
+
+    const changeAvatar = (e:React.MouseEvent<HTMLSpanElement>) => {
         setChangeAva(false)
         //@ts-ignore
         setNewAva(avatarObj[e.currentTarget.id])
@@ -49,6 +49,8 @@ export const Profile: React.FC = (props) => {
     const logout = () => {
         dispatch (logOutTC ())
     };
+
+
     if (!isAuth) return <Redirect to={ PATH.AUTHORIZATION }/>
 
 
