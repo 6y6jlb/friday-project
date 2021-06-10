@@ -4,18 +4,23 @@ import style from './Pack.module.css';
 type PropsType = {
     packName: string
     cardsCount: number
-    createdBy: string
+    rating: number
     isPrivate: boolean
     updatedDate: string
 }
 
-const Pack: React.FC<PropsType> = ({packName, cardsCount, createdBy, isPrivate, updatedDate}) => {
+const Pack: React.FC<PropsType> = ({packName, cardsCount, rating, isPrivate, updatedDate}) => {
     return (
-        <div className={ style.cardsContainer }>
+        <div className={ style.packContainer }>
             <span>{ packName } </span>
             <span>{ cardsCount } </span>
-            <span>{ createdBy } </span>
+            <span>{ rating} </span>
             <span>{ updatedDate.slice(0,10) } </span>
+            <div>
+                <button>to basket</button>
+                <button>to trash</button>
+                <button>renovation</button>
+            </div>
         </div>
     )
 }

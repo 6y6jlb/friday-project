@@ -1,0 +1,21 @@
+.addPackContainer {
+    position: absolute;
+    background-color:  #F9F9FE;;
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 20px;
+    align-items: center;
+    padding: 30px;
+    top: 30%;
+    left: 40%;
+    z-index: 100500;
+    border-radius: 2px;
+
+}
+.addPackContainer span{
+    text-transform: uppercase;
+}
+

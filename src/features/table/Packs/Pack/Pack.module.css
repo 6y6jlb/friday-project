@@ -1,0 +1,7 @@
+.packContainer {
+    display: grid;
+    grid-template-columns: 1fr 20px 1fr 1fr 1fr;
+
+
+justify-items: center;
+}

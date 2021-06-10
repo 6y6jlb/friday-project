@@ -1,6 +1,8 @@
 import React, {ChangeEvent} from "react";
 import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
 import {actionsFindAndPagination, getPacksTC} from "../../../bll/find-and-pagination-reducer";
+import SuperButton from "../../common/components/SuperButton/SuperButton";
+import style from './Search.module.css';
 
 
 export function Search() {
@@ -17,8 +19,9 @@ export function Search() {
 
     return (
         <div>
+
             <input value={ searchValue } onChange={ onChangeHandler } type="text"/>
-            <button onClick={ searchPacks }>Search</button>
+            <SuperButton className={ `${style.button} ${searchValue.length>=5&&style.openSend}` } onClick={ searchPacks }>Search</SuperButton>
         </div>
     );
 }

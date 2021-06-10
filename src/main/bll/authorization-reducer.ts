@@ -7,6 +7,7 @@ const initialProfileState = {
     isAuth: false,
     error: undefined as string | undefined,
     loading:false,
+    isInitialized:false
 }
 
 
@@ -25,11 +26,14 @@ export const actionsAuthorization = {
         } as const
     },
     setLoading:(loading: boolean) => {
-
         return {type: "friday/auth/SET-PROFILE-LOADING", payload:{loading}
         } as const
     },
-}
+    setInitialized: (isInitialized:boolean)=>{
+        return {type: "friday/auth/setInitialized", payload:{isInitialized}
+            } as const
+    },
+};
 //thunk
 export const loginTC = (email: string, password: string, rememberMe = false): AppThunk => async dispatch => {
     try {
@@ -43,6 +47,7 @@ export const loginTC = (email: string, password: string, rememberMe = false): Ap
             ? e.response.data.error
             : (e.message + ', more details in the console');
         dispatch ( actionsAuthorization.setError ( error ) )
+        dispatch ( actionsAuthorization.setAuth ( false ) )
     }
 }
 
@@ -58,6 +63,7 @@ export const logOutTC = (): AppThunk => async dispatch => {
         dispatch ( actionsAuthorization.setError ( error ) )
     }
 }
+
 export const  meTC = (): AppThunk => async dispatch => {
     try {
         const response = await AuthAPI.me ()
@@ -65,14 +71,28 @@ export const  meTC = (): AppThunk => async dispatch => {
         if (response.data) {
             dispatch ( actionsAuthorization.setAuth (true) )
             dispatch ( actionsProfile.setProfile ( response.data ) )
+            dispatch(actionsAuthorization.setInitialized(true))
         }
     } catch (e) {
         const error = e.response
             ? e.response.data.error
             : (e.message + ', more details in the console');
         dispatch ( actionsAuthorization.setError ( error ) )
+        dispatch(actionsAuthorization.setInitialized(true))
     }
 }
+
+
+/*export const initializeAppTC = ():AppThunk => (dispatch) => {
+    authAPI.me ().then ( res => {
+        if (res.data.resultCode === 0) {
+            dispatch ( setIsLoggedInAC ( {isLoggedIn: true} ) );
+        } else {
+        }
+    } ).finally ( () => {
+        dispatch ( setInitializedAC ( {isInitialized:true} ) );
+    } )
+};*/
 
 
 //reducer
@@ -84,7 +104,9 @@ const authReducer = (state = initialProfileState, action: AuthActionsTypes): Ini
             return {...state, error: action.payload.error}
         case "friday/auth/SET-PROFILE-LOADING":
             return {...state,  loading: action.payload.loading}
-
+        case "friday/auth/setInitialized": {
+            return {...state,isInitialized: action.payload.isInitialized}
+        }
         default:
             return state
     }
