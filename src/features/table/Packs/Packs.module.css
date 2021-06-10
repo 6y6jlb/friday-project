@@ -1,0 +1,30 @@
+.packsContainer {
+    width: 100%;
+    border: 5px solid #dbdbea;
+    border-radius: 2px;
+
+}
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    background-color: #dbdbea;
+    padding: 10px 0;
+}
+.packsContainer.addPack::before {
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    opacity: 70%;
+    z-index: 100499;
+    content: "♥";
+}
+.buttonAdd{
+    padding: 0 30px;
+}

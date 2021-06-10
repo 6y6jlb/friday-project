@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from "react";
 import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
-import {registerUserAC, registerUserTC} from "../../../bll/registration-reducer";
 import {AppStateType} from "../../../bll/store";
 import SuperButton from "../../common/components/SuperButton/SuperButton";
 import SuperInputText from "../../common/components/SuperInputText/SuperInputText";
 import styles from "./Registration.module.css";
+import {actionsRegistration, registerUserTC} from "../../../bll/registration-reducer";
 
 export const Registration: React.FC = (props) => {
     const [userName, setuserName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [passwordConfirm, setPasswordConfirm] = useState<string>("");
     const [error, setError] = useState<string>("");
-    const errorFromServer = useSelector<AppStateType, string>(state => state.registration.error)
+    const errorFromServer = useSelector<AppStateType, string>(state => state.registration.error);
+    const isAuth = useSelector<AppStateType, boolean> ( state => state.auth.isAuth );
 
 
     const registered = useSelector<AppStateType, boolean>(
@@ -41,10 +42,10 @@ export const Registration: React.FC = (props) => {
     };
     useEffect(() => {
         return () => {
-            dispatch(registerUserAC(false));
+            dispatch(actionsRegistration.registerUserAC(false));
         };
     }, []);
-    if (registered) {
+    if (registered || isAuth) {
         return <Redirect to={"/authorization"}/>;
     }
     return (
