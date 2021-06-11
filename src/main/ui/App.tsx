@@ -6,6 +6,7 @@ import {Routes} from "./components/routes/Routes";
 import {useDispatch, useSelector} from "react-redux";
 import {meTC} from "../bll/authorization-reducer";
 import {AppStateType} from "../bll/store";
+import {Preloader} from "./common/components/Preloader/Preloader";
 
 const App:React.FC = () => {
     const isInitialized = useSelector<AppStateType, boolean > ( state => state.auth.isInitialized )
@@ -15,12 +16,8 @@ const App:React.FC = () => {
     },[])
 
     if (!isInitialized) {
-        return <div
-            style={ {position: 'fixed', top: '30%', textAlign: 'center', width: '100%'} }>
-            loading
-        </div>
+        return  <Preloader/>
     }
-
 
     return (<HashRouter>
             <div className="App">

@@ -36,22 +36,25 @@ export const actionsAuthorization = {
 };
 //thunk
 export const loginTC = (email: string, password: string, rememberMe = false): AppThunk => async dispatch => {
+    dispatch ( actionsAuthorization.setLoading(true))
     try {
-        dispatch ( actionsAuthorization.setLoading(true))
         const response = await AuthAPI.login ( email, password, rememberMe )
         dispatch ( actionsProfile.setProfile ( response.data ) )
         dispatch ( actionsAuthorization.setAuth ( true ) )
-        dispatch ( actionsAuthorization.setLoading(false))
+
     } catch (e) {
         const error = e.response
             ? e.response.data.error
             : (e.message + ', more details in the console');
         dispatch ( actionsAuthorization.setError ( error ) )
         dispatch ( actionsAuthorization.setAuth ( false ) )
+    } finally {
+        dispatch ( actionsAuthorization.setLoading(false))
     }
 }
 
 export const logOutTC = (): AppThunk => async dispatch => {
+    dispatch ( actionsAuthorization.setLoading(true))
     try {
         const response = AuthAPI.logOut ()
         dispatch ( actionsProfile.setProfile (null) )
@@ -62,23 +65,26 @@ export const logOutTC = (): AppThunk => async dispatch => {
             : (e.message + ', more details in the console');
         dispatch ( actionsAuthorization.setError ( error ) )
     }
+    dispatch ( actionsAuthorization.setLoading(false))
 }
 
 export const  meTC = (): AppThunk => async dispatch => {
+    dispatch ( actionsAuthorization.setLoading(true))
     try {
         const response = await AuthAPI.me ()
 
         if (response.data) {
             dispatch ( actionsAuthorization.setAuth (true) )
             dispatch ( actionsProfile.setProfile ( response.data ) )
-            dispatch(actionsAuthorization.setInitialized(true))
         }
     } catch (e) {
         const error = e.response
             ? e.response.data.error
             : (e.message + ', more details in the console');
         dispatch ( actionsAuthorization.setError ( error ) )
+    } finally {
         dispatch(actionsAuthorization.setInitialized(true))
+        dispatch ( actionsAuthorization.setLoading(false))
     }
 }
 

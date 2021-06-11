@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, FormEventHandler, useState} from "react";
 import {Redirect} from "react-router-dom";
 import {PATH} from "../routes/Routes";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,7 +13,8 @@ export const AuthorizationContainer: React.FC = React.memo((props) => {
     const isAuth = useSelector<AppStateType, boolean> ( state => state.auth.isAuth )
     const loading = useSelector<AppStateType, boolean> ( state => state.auth.loading )
     const error = useSelector<AppStateType, string | undefined> ( state => state.auth.error )
-    const login = () => {
+    const login = (e:React.FormEvent) => {
+        e.preventDefault()
         dispatch ( loginTC ( email, password ) )
     }
     const changePasswordInput = (e: ChangeEvent<HTMLInputElement>) => {
