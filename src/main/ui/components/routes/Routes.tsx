@@ -9,6 +9,8 @@ import {AuthorizationContainer} from "../authorization/AuthorizationContainer";
 import {TestComponents} from "../../../../features/test-components/TestComponents";
 import FindAndPagination from "../findAndPagination/FindAndPagination";
 import Table from "../../../../features/table/Table";
+import ModalContainer from "../../../../features/modals/ModalContainer";
+import ModalsPage from "../../../../features/modals/ModalsPage";
 
 
 export const PATH = {
@@ -20,7 +22,8 @@ export const PATH = {
     ERROR_404: '/error/404',
     TEST: '/test',
     SEARCH_TEST:"/search",
-    TABLE:'/table'
+    TABLE:'/table',
+    MODAL:'/modal',
 
 }
 export const Routes:React.FC=()=>{
@@ -35,6 +38,7 @@ export const Routes:React.FC=()=>{
                 <Route path={PATH.TEST} render={()=><TestComponents/>}/>
                 <Route path={PATH.SEARCH_TEST} render={()=><FindAndPagination/>}/>
                 <Route path={PATH.TABLE} render={()=><Table/>}/>
+                <Route path={PATH.MODAL} render={()=><ModalsPage/>}/>
                 <Route render={()=><Error_404/>}/>
             </Switch>
         </div>

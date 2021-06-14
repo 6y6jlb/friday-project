@@ -32,20 +32,13 @@ export const Authorization: React.FC<AuthPropsTypes> = React.memo((props) => {
             <div className={ style.titleFrame }><h1>it-incubator</h1>
                 <h2>sign in</h2></div>
             <div className={ style.inputsFrame }>
-                <div>
-                    <p>test data</p>
-                    <p>rend@re.re</p>
-                    <p>12345678</p>
-                </div>
                 <SuperInputText onBlur={ () => onBlurCallback ( email ) }
                                 error={ error }
                                 value={ email }
-                               // defaultValue={'rend@re.re'}
                                 onChange={ changeEmailInput } placeholder={ 'login' }/>
                 <SuperInputText onBlur={ () => onBlurCallback ( password ) }
                                 error={ error }
                                 value={ password }
-                               // defaultValue={'12345678'}
                                 onChange={ changePasswordInput } placeholder={ 'password' }/>
                 <SuperButton disabled={ !!error } red={ !!error } onClick={ login }>login</SuperButton>
             </div>

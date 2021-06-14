@@ -7,8 +7,8 @@ import {AppStateType} from "../../../bll/store";
 import {Authorization} from "./Authorization";
 
 export const AuthorizationContainer: React.FC = React.memo((props) => {
-    const [email, setEmail] = useState ( '' )
-    const [password, setPassword] = useState ( '' )
+    const [email, setEmail] = useState ( 'rend@re.re' )
+    const [password, setPassword] = useState ( '12345678' )
     const dispatch = useDispatch ()
     const isAuth = useSelector<AppStateType, boolean> ( state => state.auth.isAuth )
     const loading = useSelector<AppStateType, boolean> ( state => state.auth.loading )

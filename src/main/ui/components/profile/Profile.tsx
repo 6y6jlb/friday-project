@@ -36,6 +36,7 @@ export const Profile: React.FC = (props) => {
 
     const avatarObj = [firstAva, secondAva, thirdAva]
 
+    // не работает, т.к гит не дружит с http (нужен https)
     // const avatarObj = {
     //     1:'http://www.granadoespada.com/uploads/character/5163aee85b1e6157cb82779a92b03740.jpg',
     //     2:'http://www.granadoespada.com/uploads/character/15fb799cb7880434764bb0b51d438cb1.png',
