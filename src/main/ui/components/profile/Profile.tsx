@@ -11,6 +11,7 @@ import SuperInputText from "../../common/components/SuperInputText/SuperInputTex
 import firstAva   from  './img/Img1.png'
 import secondAva from './img/img2.png'
 import thirdAva from './img/img3.png'
+import ModalContainer from "../../../../features/modals/ModalContainer";
 
 export const Profile: React.FC = (props) => {
 
@@ -19,6 +20,7 @@ export const Profile: React.FC = (props) => {
     const isAuth = useSelector<AppStateType, boolean> ( state => state.auth.isAuth )
 
     const [change, setChange] = useState(false)
+    const [modal, setModal] = useState(false)
     const [changeAva, setChangeAva] = useState(false)
     const [avatar, setNewAva] = useState(profile &&  profile.avatar || "http://placehold.it/300x300" )
     const [name, setName] = useState((profile && profile.name) || (profile &&  profile.email) || 'init')
@@ -53,6 +55,7 @@ export const Profile: React.FC = (props) => {
         // @ts-ignore
         setNewAva(key)
         dispatch(updateAvatar(avatar))
+        setModal(true)
     }
     const changeName = () => {
         setChange(false)
@@ -68,13 +71,16 @@ export const Profile: React.FC = (props) => {
 
     return (
         <div className={ style.profileContainer }>
+            { modal && <ModalContainer text={'Avatar was changed!'} width={220}height={180} showModal={true}/>}
             <SuperButton value={ 'logout' } onClick={ logout }>logOut</SuperButton>
             <img className={ style.image } src={avatar } alt={'error'}/>
 
             {!changeAva &&
             <>
                 <span>Change avatar? </span>
-                <SuperButton onClick={() => {setChangeAva(true)}}> Yes </SuperButton>
+                <SuperButton onClick={() => {
+                    setChangeAva(true)
+                    setModal(false)}}> Yes </SuperButton>
             </>
             }
             {changeAva &&

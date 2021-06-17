@@ -9,6 +9,7 @@ import ModalUp from "./up/ModalUp";
 const ModalsPage: React.FC = () => {
 
     return (
+
         <div
             style={{
                 display: 'flex',
@@ -19,7 +20,8 @@ const ModalsPage: React.FC = () => {
         >
             <div style={{height: '40vh'}}/>
 
-            <ModalContainer/>
+            <ModalContainer
+                showButton={true}/>
             <ModalQuestionContainer/>
             <ModalInputContainer/>
             <ModalMessageContainer/>

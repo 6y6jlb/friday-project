@@ -1,27 +1,36 @@
-import React, {useState} from 'react';
+import React, {CSSProperties, useState} from 'react';
 import Modal from "./Modal";
+import SuperButton from "../../main/ui/common/components/SuperButton/SuperButton";
 
-const ModalContainer: React.FC = () => {
-    const [show, setShow] = useState(false);
+
+type ModalContainerType = {
+    width?: number
+    height?: number
+    text?:string
+    showModal?:boolean
+    showButton?:boolean
+    modalStyle?:CSSProperties
+}
+const ModalContainer: React.FC<ModalContainerType> = ({modalStyle, showButton = false,showModal = false,width= 300,height= 260,text= 'Simple Modal'}) => {
+    const [show, setShow] = useState(showModal);
 
     return (
         <>
-            <button onClick={() => setShow(true)}>show simple Modal</button>
+            {showButton &&  <button onClick={() => setShow(true)}>show simple Modal</button>}
             <Modal
+                show={show}
                 enableBackground={true}
                 backgroundOnClick={() => setShow(false)}
-
-                width={300}
-                height={200}
+                modalStyle={modalStyle}
                 // modalOnClick={() => setShow(false)}
 
-                show={show}
+                width={width}
+                height={height}
             >
-                Simple Modal
-                <button onClick={() => setShow(false)}>Close</button>
+                {text}
+                <SuperButton onClick={() => setShow(false)}>Close</SuperButton>
             </Modal>
         </>
-    );
-};
+)}
 
 export default ModalContainer;

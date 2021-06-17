@@ -1,0 +1,36 @@
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+.modalBackgroundActive{
+    opacity: 1;
+    pointer-events: all;
+}
+.DisModalBackground {
+    background: rgba(0, 0, 0, 0);
+}
+.modalContent{
+    padding: 10px;
+    border-radius: 10px;
+
+    background: white;
+
+    transform: scale(0.5);
+    transition: 0.4s all;
+
+}
+.modalContentActive{
+    transform: scale(1);
+}
+

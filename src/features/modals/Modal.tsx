@@ -1,4 +1,5 @@
 import React, {CSSProperties} from 'react';
+import s from "./Modal.module.css";
 
 interface IModal {
     enableBackground?: boolean;
@@ -36,35 +37,17 @@ const Modal: React.FC<IModal> = (
     return (
         <>
             {enableBackground && <div
-                style={{
-                    position: 'fixed',
-                    top: '0px',
-                    left: '0px',
-                    width: '100vw',
-                    height: '100vh',
-
-                    background: 'black',
-                    opacity: 0.35,
-                    zIndex: 20,
-
-                    ...backgroundStyle,
-                }}
+                className={s.modalBackground}
+                style={{...backgroundStyle}}
                 onClick={backgroundOnClick}
             />}
             <div
+                className={s.modalContent}
                 style={{
-                    position: 'fixed',
                     top,
                     left,
                     width,
                     height,
-                    display: 'flex',
-                    flexFlow: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-
-                    background: 'lime',
-                    zIndex: 21,
 
                     ...modalStyle,
                 }}

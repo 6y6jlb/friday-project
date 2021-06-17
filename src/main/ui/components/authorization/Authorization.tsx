@@ -5,6 +5,7 @@ import SuperButton from "../../common/components/SuperButton/SuperButton";
 import {NavLink} from "react-router-dom";
 import {PATH} from "../routes/Routes";
 import {Preloader} from "../../common/components/Preloader/Preloader";
+import ModalContainer from "../../../../features/modals/ModalContainer";
 
 
 type AuthPropsTypes = {
@@ -27,19 +28,28 @@ export const Authorization: React.FC<AuthPropsTypes> = React.memo((props) => {
     }
 
     return (
+        <div className={style.authContainer}>
 
-                <div className={ style.authContainer }>
-            <div className={ style.titleFrame }><h1>it-incubator</h1>
+            {error && error.length > 0 &&  <ModalContainer text={error} width={250}height={180} showModal={true}/>}
+
+            <div className={style.titleFrame}>
+                <h1>it-incubator</h1>
                 <h2>sign in</h2></div>
-            <div className={ style.inputsFrame }>
-                <SuperInputText onBlur={ () => onBlurCallback ( email ) }
-                                error={ error }
-                                value={ email }
-                                onChange={ changeEmailInput } placeholder={ 'login' }/>
-                <SuperInputText onBlur={ () => onBlurCallback ( password ) }
-                                error={ error }
-                                value={ password }
-                                onChange={ changePasswordInput } placeholder={ 'password' }/>
+
+            <div className={style.inputsFrame}>
+                <SuperInputText
+                    onBlur={() => onBlurCallback(email)}
+                    error={error}
+                    value={email}
+                    onChange={changeEmailInput}
+                    placeholder={'login'}/>
+                <SuperInputText
+                    onBlur={() => onBlurCallback(password)}
+                    error={error}
+                    value={password}
+                    onChange={changePasswordInput}
+                    placeholder={'password'}/>
+
                 <SuperButton disabled={ !!error } red={ !!error } onClick={ login }>login</SuperButton>
             </div>
             <div className={ style.forgotPasFrame }>
